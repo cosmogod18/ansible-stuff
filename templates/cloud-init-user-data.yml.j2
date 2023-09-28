@@ -52,23 +52,23 @@ autoinstall:
       
   # KERNEL PART
   kernel:
-    package: linux-generic
+    package: {{ kernel }}
 
   # KEYBOARD PART
   keyboard:
-    layout: us
+    layout: {{ layout }}
     toggle: null
     variant: ''
 
   # LOCALE PART
-  locale: en_US.UTF-8
+  locale: {{ locale }}
 
   # USERS PART
   user-data:
-    runcmd:
-      - 'apt purge -y snapd'
-      - 'rm -rf /root/snap'
-      - 'apt update -y && apt upgrade -y && apt autoremove -y'
+    runcmd: {{ runcmd }}
+     # - 'apt purge -y snapd'
+     # - 'rm -rf /root/snap'
+     # - 'apt update -y && apt upgrade -y && apt autoremove -y'
      #- 'git clone https://github.com/cosmogod18/ansible-stuff /home/tomas/ansible'
      #- 'ansible-playbook /home/tomas/ansible/playbook.yaml'
      #- 'rm -rf /home/tomas/ansible'
