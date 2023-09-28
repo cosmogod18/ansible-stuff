@@ -1,0 +1,12 @@
+---
+- name: update
+  hosts: localhost
+  connection: local
+
+  tasks:
+    - name: do update cache
+      apt:
+        update_cache: yes
+    - name: do upgrade
+      apt:
+        upgrade: yes
