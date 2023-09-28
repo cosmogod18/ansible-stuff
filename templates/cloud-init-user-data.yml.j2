@@ -69,12 +69,7 @@ autoinstall:
       - 'apt purge -y snapd'
       - 'rm -rf /root/snap'
       {% if add_hardening %}- 'touch /root/hardening_works'{% endif %}
-     # - 'apt purge -y snapd'
-     # - 'rm -rf /root/snap'
-     # - 'apt update -y && apt upgrade -y && apt autoremove -y'
-     #- 'git clone https://github.com/cosmogod18/ansible-stuff /home/tomas/ansible'
-     #- 'ansible-playbook /home/tomas/ansible/playbook.yaml'
-     #- 'rm -rf /home/tomas/ansible'
+
     timezone: {{ timezone }}
     hostname: {{ hostname }}
     users:
