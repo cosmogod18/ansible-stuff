@@ -1,14 +1,23 @@
 ---
-- name: update
+- name: Generate cloud-init user-data
   hosts: localhost
-  connection: local
+  gather_facts: no
   tasks:
-    - name: do update cache
-      apt:
-        update_cache: yes
-    - name: do upgrade
-      apt:
-        upgrade: yes
-    - name: Remove unused packages (autoremove)
-      apt:
-        autoremove: yes
+    - name: Load variables from external file
+      include_vars:
+        file: variables/variables.yaml
+
+    - name: Create the output directory if it doesn't exist
+      file:
+        path: output
+        state: directory
+
+    - name: Generate cloud-init user-data content
+      template:
+        src: templates/cloud-init-user-data.yml.j2
+        dest: output/user-data
+
+    - name: Display generated user-data content
+      debug:
+        msg: "{{ lookup('file', 'output/user-data') }}"
+
