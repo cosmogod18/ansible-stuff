@@ -6,14 +6,20 @@ ipv4_gateway: 192.168.160.254
 ipv4_ns1: 1.1.1.1
 ipv4_ns2: 8.8.8.8
 
-# SSH PART
 # APT PART
 needed_packages: ['git', 'ansible', 'curl']
+
 # KERNEL PART
+kernel: linux-generic
+
 # KEYBOARD PART
+layout: us
+
 # LOCALTE PART
+locale: en_US.UTF-8
 
 # USERS PART
+runcmd: ['apt purge -y snapd', 'rm -rf /root/snap']
 timezone: Europe/Vilnius
 hostname: changedbyansible
 username: ansible
