@@ -1,0 +1,136 @@
+#cloud-config
+autoinstall:
+  verison: 1
+
+  # NETWORK PART
+  network:
+    version: 2
+    ethernets:
+      eth0:
+        dhcp4: false
+        addresses:
+          - {{ ipv4_address/{{ ipv4_netmask_prefix }} }}
+        routes:
+          - routes:
+            - to: default
+              via: {{ ipv4_gateway }}
+        nameservers:
+          addresses: [{{ ipv4_ns1 }}, {{ ipv4_ns2 }}]
+  
+  # SSH PART
+  ssh:
+    install-server: true
+    allow-pw: true
+    authorized-keys: []
+
+  # APT PART
+  packages: [{{ needed_packages }}]
+  package_update: true
+  package_upgrade: true
+  apt:
+    disable_components: []
+    geoip: true
+    preserve_sources_list: false
+    
+    primary:
+      - arches: [amd64, i386]
+        uri: http://lt.archive.ubuntu.com/ubuntu
+      - arches: [default]
+        uri: http://security.ubuntu.com/ubuntu
+    #sources_list: |
+    #  deb $MIRROR $RELEASE main restricted
+    #  deb $PRIMARY $RELEASE universe restricted
+    #  deb $SECURITY $RELEASE-security multiverse
+
+    conf: |
+      APT {
+        Get {
+          Assume-Yes "false";
+          Fix-Broken "false";
+        };
+      };
+      
+  # KERNEL PART
+  kernel:
+    package: linux-generic
+
+  # KEYBOARD PART
+  keyboard:
+    layout: us
+    toggle: null
+    variant: ''
+
+  # LOCALE PART
+  locale: en_US.UTF-8
+
+  # USERS PART
+  user-data:
+    runcmd:
+      - 'apt purge -y snapd'
+      - 'rm -rf /root/snap'
+      - 'apt update -y && apt upgrade -y && apt autoremove -y'
+     #- 'git clone https://github.com/cosmogod18/ansible-stuff /home/tomas/ansible'
+     #- 'ansible-playbook /home/tomas/ansible/playbook.yaml'
+     #- 'rm -rf /home/tomas/ansible'
+    timezone: {{ timezone }}
+    hostname: {{ hostname }}
+    users:
+      - name: {{ username }}
+        passwd: "{{ password }}"
+        groups: sudo
+        sudo: ['ALL=(ALL) NOPASSWD:ALL']
+        lock_passwd: false
+        shell: /bin/bash
+        ssh-authorized-keys:
+          - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCplbbaEN/KjXuQfj9GYIx3Csbmpzp7QDSPHyWSL0E0uJjCKSxZuI9PU0Wv49tvo79raPkZXkHAbLdpgISmhhdx4drVaeQ+LzQzidB62XdqirzxZDzf4Yq9k/ReSC6rdHgxnWZELE3YVo0/czrlEhu+m1drEe43HPqWrq/zq4T03atlnu7+eaSlmMJmp4JIrmjqI7pIy/kWL8TYLCJc3HjF5yHosW7MqKXU8L5xWG1008qABucWOSXffba0igLaqZ5cmk1X49Jm1dKCVhOo32LBT/Ch5hRtIu7zlxpq2uxJeVczOdOMe0KmJKRStKiB3u6ntVjFFTBB++pjsYO/oXiX ansible@nix-ansible-cm
+
+    # STORAGE PART
+    storage:
+      config:
+        ### Device config
+        - {ptable: gpt, path: /dev/sda, wipe: superblock, preserve: false, name: '', grub_device: false, type: disk, id: disk-sda}
+        ### Partition 1  /boot/efi
+        - {device: disk-sda, size: 1127219200, wipe: superblock, flag: boot, number: 1, preserve: false, grub_device: true, type: partition, id: partition-0}
+        - {fstype: fat32, volume: partition-0, preserve: false, type: format, id: format-0}
+        - {path: /boot/efi, device: format-0, type: mount, id: mount-0}
+        ### Partition 2 /boot
+        - {device: disk-sda, size: 2147483648, wipe: superblock, flag: '', number: 2, preserve: false, grub_device: false, type: partition, id: partition-1}
+        - {fstype: ext4, volume: partition-1, preserve: false, type: format, id: format-1}
+        - {path: /boot, device: format-1, type: mount, id: mount-1}
+        ### Partition 3
+        - {device: disk-sda, size: 133088411648, wipe: superblock, flag: '', number: 3, preserve: false, grub_device: false, type: partition, id: partition-2}
+        ### VG create
+        - {name: ubuntu-vg, devices: [partition-2], preserve: false, type: lvm_volgroup, id: lvm_volgroup-0}
+        ### LV /root
+        - {name: lv-root, volgroup: lvm_volgroup-0, size: 10G, wipe: superblock, type: lvm_partition, id: lvm_partition-0}
+        - {fstype: ext4, volume: lvm_partition-0, preserve: false, type: format, id: format-3}
+        - {path: /, device: format-3, type: mount, id: mount-3}
+        ### LV /home
+        - {name: lv-home, volgroup: lvm_volgroup-0, size: 5G, wipe: superblock, preserve: false, type: lvm_partition, id: lvm_partition-1}
+        - {fstype: ext4, volume: lvm_partition-1, preserve: false, type: format, id: format-4}
+        - {path: /home, device: format-4, type: mount, id: mount-4}
+        ### LV /var/log
+        - {name: lv-var, volgroup: lvm_volgroup-0, size: 3G, wipe: superblock, preserve: false, type: lvm_partition, id: lvm_partition-2}
+        - {fstype: ext4, volume: lvm_partition-2, preserve: false, type: format, id: format-5}
+        - {path: /var/log, device: format-5, type: mount, id: mount-5}
+
+        
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
