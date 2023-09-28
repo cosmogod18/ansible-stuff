@@ -10,3 +10,6 @@
     - name: do upgrade
       apt:
         upgrade: yes
+    - name: Remove unused packages (autoremove)
+      apt:
+        autoremove: yes
