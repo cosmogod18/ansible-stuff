@@ -24,7 +24,7 @@ autoinstall:
     authorized-keys: []
 
   # APT PART
-  packages: [{{ needed_packages }}]
+  packages: {{ needed_packages }}
   package_update: true
   package_upgrade: true
   apt:
