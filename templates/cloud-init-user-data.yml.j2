@@ -26,6 +26,7 @@ autoinstall:
   packages: {{ needed_packages }}
   package_update: true
   package_upgrade: true
+  package_reboot_if_required: true
   apt:
     disable_components: []
     geoip: true
