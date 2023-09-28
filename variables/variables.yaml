@@ -23,6 +23,7 @@ locale: en_US.UTF-8
 
 # USERS PART
 runcmd: ['apt purge -y snapd', 'rm -rf /root/snap']
+runcmd_hardened: ['apt purge -y snapd', 'rm -rf /root/snap', 'touch /root/hardenedworks.txt']
 timezone: Europe/Vilnius
 hostname: changedbyansible
 username: ansible
