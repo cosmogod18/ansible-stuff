@@ -66,6 +66,9 @@ autoinstall:
   # USERS PART
   user-data:
     runcmd: {{ runcmd }}
+      {% if add_hardening %}
+      - touch /root/hardening_works
+      {% endif %}
      # - 'apt purge -y snapd'
      # - 'rm -rf /root/snap'
      # - 'apt update -y && apt upgrade -y && apt autoremove -y'
