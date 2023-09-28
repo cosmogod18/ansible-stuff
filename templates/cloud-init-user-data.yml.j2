@@ -11,9 +11,8 @@ autoinstall:
         addresses:
           - {{ ipv4_address }}/{{ ipv4_netmask_prefix }}
         routes:
-          - routes:
-            - to: default
-              via: {{ ipv4_gateway }}
+          - to: default
+            via: {{ ipv4_gateway }}
         nameservers:
           addresses: [{{ ipv4_ns1 }}, {{ ipv4_ns2 }}]
   
