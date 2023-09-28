@@ -8,7 +8,7 @@ ipv4_ns2: 8.8.8.8
 
 # SSH PART
 # APT PART
-packages: ['git', 'ansible', 'curl']
+needed_packages: ['git', 'ansible', 'curl']
 # KERNEL PART
 # KEYBOARD PART
 # LOCALTE PART
