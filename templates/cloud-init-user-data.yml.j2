@@ -84,16 +84,16 @@ autoinstall:
     config:
       ### Device config
       - {ptable: gpt, path: /dev/sda, wipe: superblock, preserve: false, name: '', grub_device: false, type: disk, id: disk-sda}
-      ### Partition 1  /boot/efi
-      - {device: disk-sda, size: 1127219200, wipe: superblock, flag: boot, number: 1, preserve: false, grub_device: true, type: partition, id: partition-0}
+      ### Partition 1  /dev/sda1 /boot/efi 1127219200
+      - {device: disk-sda, size: {{ dev_sda1 }}, wipe: superblock, flag: boot, number: 1, preserve: false, grub_device: true, type: partition, id: partition-0}
       - {fstype: fat32, volume: partition-0, preserve: false, type: format, id: format-0}
       - {path: /boot/efi, device: format-0, type: mount, id: mount-0}
-      ### Partition 2 /boot
-      - {device: disk-sda, size: 2147483648, wipe: superblock, flag: '', number: 2, preserve: false, grub_device: false, type: partition, id: partition-1}
+      ### Partition 2 /dev/sda2 /boot 2147483648
+      - {device: disk-sda, size: {{ dev_sda2 }}, wipe: superblock, flag: '', number: 2, preserve: false, grub_device: false, type: partition, id: partition-1}
       - {fstype: ext4, volume: partition-1, preserve: false, type: format, id: format-1}
       - {path: /boot, device: format-1, type: mount, id: mount-1}
       ### Partition 3  133088411648
-      - {device: disk-sda, size: {{ disk_sda }}, wipe: superblock, flag: '', number: 3, preserve: false, grub_device: false, type: partition, id: partition-2}
+      - {device: disk-sda, size: {{ dev_sda3 }}, wipe: superblock, flag: '', number: 3, preserve: false, grub_device: false, type: partition, id: partition-2}
       ### VG create
       - {name: ubuntu-vg, devices: [partition-2], preserve: false, type: lvm_volgroup, id: lvm_volgroup-0}
       ### LV /root
