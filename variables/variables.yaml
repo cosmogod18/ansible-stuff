@@ -32,8 +32,8 @@ password: labas
 ssh_key: ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCplbbaEN/KjXuQfj9GYIx3Csbmpzp7QDSPHyWSL0E0uJjCKSxZuI9PU0Wv49tvo79raPkZXkHAbLdpgISmhhdx4drVaeQ+LzQzidB62XdqirzxZDzf4Yq9k/ReSC6rdHgxnWZELE3YVo0/czrlEhu+m1drEe43HPqWrq/zq4T03atlnu7+eaSlmMJmp4JIrmjqI7pIy/kWL8TYLCJc3HjF5yHosW7MqKXU8L5xWG1008qABucWOSXffba0igLaqZ5cmk1X49Jm1dKCVhOo32LBT/Ch5hRtIu7zlxpq2uxJeVczOdOMe0KmJKRStKiB3u6ntVjFFTBB++pjsYO/oXiX ansible@nix-ansible-cm
 
 # DISK PART
-dev_sda1: 1.3G
-dev_sda2: 2.5G
+dev_sda1: 2G
+dev_sda2: 3G
 dev_sda3: 50G
 root_size: 20G
 home_size: 15G
