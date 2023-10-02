@@ -63,7 +63,7 @@ autoinstall:
   # LOCALE PART
   locale: {{ locale }}
 
-  # USERS PART
+  # USER PART
   user-data:
     runcmd: {% if add_hardening %}{{ runcmd_hardened }}{% else %} {{ runcmd }}{% endif %}
 
@@ -79,7 +79,7 @@ autoinstall:
         ssh-authorized-keys:
           - {{ ssh_key }}
 
-    # STORAGE PART
+  # STORAGE PART
   storage:
     config:
       ### Device config
