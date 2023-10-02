@@ -1,6 +1,7 @@
 ---
 # DO HARDENING OS ?! 
 add_hardening: true
+os_hard_link: https://github.com/cosmogod18/os_hardening.git
 
 # NETWORK PART
 ipv4_address: 192.168.160.111
