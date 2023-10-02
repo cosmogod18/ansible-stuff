@@ -27,7 +27,7 @@ runcmd_hardened: ['apt purge -y snapd', 'rm -rf /root/snap', 'touch /root/harden
 timezone: Europe/Vilnius
 hostname: changedbyansible
 username: ansible
-password: $6$exDY1mhS4KUYCE/2$zmn9ToZwTKLhCw.b4/b.ZRTIZM30JZ4QrOQ2aOXJ8yk96xpcCof0kxKwuX1kqLG/ygbJ1f8wxED22bTL4F46P0
+password: labas
 ssh_key: ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCplbbaEN/KjXuQfj9GYIx3Csbmpzp7QDSPHyWSL0E0uJjCKSxZuI9PU0Wv49tvo79raPkZXkHAbLdpgISmhhdx4drVaeQ+LzQzidB62XdqirzxZDzf4Yq9k/ReSC6rdHgxnWZELE3YVo0/czrlEhu+m1drEe43HPqWrq/zq4T03atlnu7+eaSlmMJmp4JIrmjqI7pIy/kWL8TYLCJc3HjF5yHosW7MqKXU8L5xWG1008qABucWOSXffba0igLaqZ5cmk1X49Jm1dKCVhOo32LBT/Ch5hRtIu7zlxpq2uxJeVczOdOMe0KmJKRStKiB3u6ntVjFFTBB++pjsYO/oXiX ansible@nix-ansible-cm
 
      # - 'apt purge -y snapd'
