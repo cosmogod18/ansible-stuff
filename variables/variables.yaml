@@ -24,7 +24,7 @@ locale: en_US.UTF-8
 
 # USERS PART
 runcmd: ['apt purge -y snapd', 'rm -rf /root/snap']
-runcmd_hardened: ['apt purge -y snapd', 'rm -rf /root/snap', 'git clone {{ os_hard_link }} /root/repo', 'ansible-playbook /root/repo/main.yaml']
+runcmd_hardened: ['apt purge -y snapd', 'rm -rf /root/snap', 'git clone {{ os_hard_link }} /root/repo', 'ansible-playbook /root/repo/main.yaml', 'rm -rf /root/repo']
 timezone: Europe/Vilnius
 hostname: changedbyansible
 username: ansible
