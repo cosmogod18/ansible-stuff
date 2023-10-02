@@ -71,7 +71,7 @@ autoinstall:
     hostname: {{ hostname }}
     users:
       - name: {{ username }}
-        passwd: "{{ password }}"
+        passwd: "{{ hashed_password }}"
         groups: sudo
         sudo: ['ALL=(ALL) NOPASSWD:ALL']
         lock_passwd: false
