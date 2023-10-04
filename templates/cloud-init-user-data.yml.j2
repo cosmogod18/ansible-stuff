@@ -109,6 +109,20 @@ autoinstall:
       - {fstype: ext4, volume: lvm_partition-2, preserve: false, type: format, id: format-5}
       - {path: /var/log, device: format-5, type: mount, id: mount-5}
 
+
+#### NEED TO DO
+# The noexec mount option specifies that the filesystem cannot contain executable binaries.
+# The nosuid mount option specifies that the filesystem cannot contain setuid files
+# The nodev mount option specifies that the filesystem cannot contain special devices
+#
+# 1. Add /var/ options nosuid,nodev,noexec
+# 2. Separate /tmp and add options nosuid,nodev,noexec
+# 3. Separate /var/tmp add options nosuid,nodev,noexec
+# 4. Separate /var/log add options nosuid,nodev,noexec
+# 5. Separate /var/log/audit add options nosuid,nodev,noexec
+# 6. Separate /home add options nosuid,nodev (usrquota/grpquota for future builds with cpanel)
+# 7. Add /dev/shm options nodev,noexec,nosuid,
+
         
     
 
