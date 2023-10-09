@@ -34,9 +34,14 @@ ssh_key: ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCplbbaEN/KjXuQfj9GYIx3Csbmpzp7QDS
 # DISK PART
 boot_efi_size: 100M
 boot_size: 2G
-dev_sda3: 50G
-root_size: 20G
-home_size: 15G
+dev_sda3: 70G
+root_size: 10G
+home_size: 5G
+var_size: 1G
 var_log_size: 2G
+var_log_audit_size: 2G
+var_tmp_size: 1G
+tmp_size: 2G
+
 
 
