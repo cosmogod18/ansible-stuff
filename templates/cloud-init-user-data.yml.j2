@@ -105,9 +105,9 @@ autoinstall:
       - {fstype: ext4, volume: lvm_partition-1, preserve: false, type: format, id: format-4}
       - {path: /home, device: format-4, type: mount, id: mount-4}
       ### LV /var
-      #- {name: lv-var, volgroup: lvm_volgroup-0, size: {{ var_size }}, wipe: superblock, preserve: false, type: lvm_partition, id: lvm_partition-2}
-      #- {fstype: ext4, volume: lvm_partition-2, preserve: false, type: format, id: format-5}
-      #- {path: /var, device: format-5, type: mount, id: mount-5, options: 'nosuid,nodev,noexec'}
+      - {name: lv-var, volgroup: lvm_volgroup-0, size: {{ var_size }}, wipe: superblock, preserve: false, type: lvm_partition, id: lvm_partition-2}
+      - {fstype: ext4, volume: lvm_partition-2, preserve: false, type: format, id: format-5}
+      - {path: /var, device: format-5, type: mount, id: mount-5, options: 'nosuid,nodev,noexec'}
       ### LV /var/log
       #- {name: lv-var-log, volgroup: lvm_volgroup-0, size: {{ var_log_size }}, wipe: superblock, preserve: false, type: lvm_partition, id: lvm_partition-3}
       #- {fstype: ext4, volume: lvm_partition-3, preserve: false, type: format, id: format-6}
