@@ -36,9 +36,9 @@ boot_efi_size: 100M
 boot_size: 2G
 dev_sda3: 70G
 root_size: 10G
-root_fs: ext4
+root_fs: xfs
 home_size: 5G
-home_fs: ext4
+home_fs: xfs
 var_size: 1G
 var_fs: ext4
 var_log_size: 2G
