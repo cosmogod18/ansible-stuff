@@ -98,31 +98,31 @@ autoinstall:
       - {name: ubuntu-vg, devices: [partition-2], preserve: false, type: lvm_volgroup, id: lvm_volgroup-0}
       ### LV /root
       - {name: lv-root, volgroup: lvm_volgroup-0, size: {{ root_size }}, wipe: superblock, type: lvm_partition, id: lvm_partition-0}
-      - {fstype: ext4, volume: lvm_partition-0, preserve: false, type: format, id: format-3}
+      - {fstype: {{ root_fs }}, volume: lvm_partition-0, preserve: false, type: format, id: format-3}
       - {path: /, device: format-3, type: mount, id: mount-3}
       ### LV /home
       - {name: lv-home, volgroup: lvm_volgroup-0, size: {{ home_size }}, wipe: superblock, preserve: false, type: lvm_partition, id: lvm_partition-1}
-      - {fstype: ext4, volume: lvm_partition-1, preserve: false, type: format, id: format-4}
+      - {fstype: {{ home_fs }}, volume: lvm_partition-1, preserve: false, type: format, id: format-4}
       - {path: /home, device: format-4, type: mount, id: mount-4}
       ### LV /var
       - {name: lv-var, volgroup: lvm_volgroup-0, size: {{ var_size }}, wipe: superblock, preserve: false, type: lvm_partition, id: lvm_partition-2}
-      - {fstype: ext4, volume: lvm_partition-2, preserve: false, type: format, id: format-5}
+      - {fstype: {{ var_fs }}, volume: lvm_partition-2, preserve: false, type: format, id: format-5}
       - {path: /var, device: format-5, type: mount, id: mount-5, options: 'nodev,nosuid'}
       ### LV /var/log
       - {name: lv-var-log, volgroup: lvm_volgroup-0, size: {{ var_log_size }}, wipe: superblock, preserve: false, type: lvm_partition, id: lvm_partition-3}
-      - {fstype: ext4, volume: lvm_partition-3, preserve: false, type: format, id: format-6}
+      - {fstype: {{ var_log_fs }}, volume: lvm_partition-3, preserve: false, type: format, id: format-6}
       - {path: /var/log, device: format-6, type: mount, id: mount-6, options: 'nosuid,nodev,noexec'}
       ### LV /var/log/audit
       - {name: lv-var-log-audit, volgroup: lvm_volgroup-0, size: {{ var_log_audit_size }}, wipe: superblock, preserve: false, type: lvm_partition, id: lvm_partition-4}
-      - {fstype: ext4, volume: lvm_partition-4, preserve: false, type: format, id: format-7}
+      - {fstype: {{ var_log_audit_fs }}, volume: lvm_partition-4, preserve: false, type: format, id: format-7}
       - {path: /var/log/audit, device: format-7, type: mount, id: mount-7, options: 'nosuid,nodev,noexec'}
       ### LV /var/tmp
       - {name: lv-var-tmp, volgroup: lvm_volgroup-0, size: {{ var_tmp_size }}, wipe: superblock, preserve: false, type: lvm_partition, id: lvm_partition-5}
-      - {fstype: ext4, volume: lvm_partition-5, preserve: false, type: format, id: format-8}
+      - {fstype: {{ var_tmp_fs }}, volume: lvm_partition-5, preserve: false, type: format, id: format-8}
       - {path: /var/tmp, device: format-8, type: mount, id: mount-8, options: 'nosuid,nodev,noexec'}
       ### LV /tmp
       - {name: lv-tmp, volgroup: lvm_volgroup-0, size: {{ tmp_size }}, wipe: superblock, preserve: false, type: lvm_partition, id: lvm_partition-6}
-      - {fstype: ext4, volume: lvm_partition-6, preserve: false, type: format, id: format-9}
+      - {fstype: {{ tmp_fs }}, volume: lvm_partition-6, preserve: false, type: format, id: format-9}
       - {path: /tmp, device: format-9, type: mount, id: mount-9, options: 'nosuid,nodev,noexec'}
 
 
